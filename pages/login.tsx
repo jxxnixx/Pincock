@@ -38,7 +38,6 @@ function Login() {
       >
         <label htmlFor='email'>email</label>
         <input
-          id='email'
           {...register('email', {
             required: 'Email is required',
             pattern: {
@@ -52,7 +51,6 @@ function Login() {
 
         <label htmlFor='password'>password</label>
         <input
-          id='password'
           {...register('password', {
             required: 'Password is required',
             // minLength: {
