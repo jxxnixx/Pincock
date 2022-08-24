@@ -1,15 +1,15 @@
 import axios from 'axios';
 
 export const API_URL = 'http://127.0.0.1:5000';
-// export const API_URL = 'https://api.xn--o22bp6a0zk.com';
+// export const API_URL = '';
 
 const api = axios.create({
   baseURL: API_URL,
 });
 
-interface IProps {
-  [key: string]: any;
-}
+// interface IProps {
+//   [key: string]: any;
+// }
 
 export const usersApi = {
   //   // 회원가입(NextJS api)
@@ -48,4 +48,9 @@ export const usersApi = {
       email,
       password,
     }),
+};
+
+export const listApi = {
+  getPinList: (listId: number) =>
+    api.get(`/pin/search/list?listId=${listId}`).then((res) => res.data),
 };

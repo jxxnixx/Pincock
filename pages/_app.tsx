@@ -1,12 +1,20 @@
-import Layout from '@layouts/layout';
+import AppLayout from '@layouts/appLayout';
 import '@styles/globals.css';
+import axios from 'axios';
 import type { AppProps } from 'next/app';
+import { SWRConfig } from 'swr';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <SWRConfig
+      value={{
+        fetcher: (url: string) => axios.get(url).then((res) => res.data),
+      }}
+    >
+      <AppLayout>
+        <Component {...pageProps} />
+      </AppLayout>
+    </SWRConfig>
   );
 }
 
