@@ -2,6 +2,7 @@ import { usersApi } from '@libs/client/api';
 import { FieldErrors, useForm } from 'react-hook-form';
 import Button from 'components/button';
 import Layout from '@layouts/layout';
+import Input from 'components/input';
 
 interface IForm {
   email: string;
@@ -33,36 +34,37 @@ function Login() {
   return (
     <Layout>
       <form
-        className='flex flex-col divide-y-2'
+        className="flex flex-col"
         onSubmit={handleSubmit(onValid, onInvalid)}
       >
-        <label htmlFor='email'>email</label>
-        <input
-          {...register('email', {
+        <Input
+          name="email"
+          type="text"
+          label="Email"
+          register={register('email', {
             required: 'Email is required',
             pattern: {
               value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
-              message: 'email regex',
+              message: 'Email regex',
             },
           })}
-          placeholder='aaa@aaa.com'
+          placeholder="E-mail"
+          error={errors?.email?.message}
         />
-        <span className='text-red-500'>{errors?.email?.message}</span>
 
-        <label htmlFor='password'>password</label>
-        <input
-          {...register('password', {
+        <Input
+          name="password"
+          label="Password"
+          type="password"
+          kind="text"
+          register={register('password', {
             required: 'Password is required',
-            // minLength: {
-            //   value: 8,
-            //   message: 'minLength is 8',
-            // },
           })}
-          placeholder='********'
+          placeholder="********"
+          error={errors?.password?.message}
         />
-        <span className='text-red-500'>{errors?.password?.message}</span>
 
-        <Button type='submit' text='Login' />
+        <Button type="submit" text="Login" />
       </form>
     </Layout>
   );
