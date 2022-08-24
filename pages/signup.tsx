@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 // import { Checkbox } from '@material-tailwind/react';
 import Button from 'components/button';
 import Layout from '@layouts/layout';
+import Input from 'components/input';
 
 interface IsignUpForm {
   email: string;
@@ -28,56 +29,60 @@ function SignUp() {
 
   return (
     <Layout>
-      <form
-        className='flex flex-col divide-y-2'
-        onSubmit={handleSubmit(submitForm)}
-      >
-        <label htmlFor='email'>email</label>
-        <input
-          id='email'
-          {...register('email', {
+      <form className="flex flex-col" onSubmit={handleSubmit(submitForm)}>
+        <Input
+          name="email"
+          type="text"
+          label="Email"
+          register={register('email', {
             required: 'Email is required',
             pattern: {
               value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
-              message: 'email regex',
+              message: 'Email regex',
             },
           })}
-          placeholder='aaa@aaa.com'
+          placeholder="aaa@aaa.com"
+          error={errors?.email?.message}
         />
-        <span className='text-red-500'>{errors?.email?.message}</span>
 
-        <label htmlFor='username'>username</label>
-        <input
-          id='username'
-          {...register('username', {
+        <Input
+          name="username"
+          label="Username"
+          type="username"
+          kind="text"
+          register={register('username', {
             required: 'Username is required',
             pattern: {
               value: /^[ㄱ-ㅎ|가-힣|A-z][ㄱ-ㅎ|가-힣|A-z0-9-_]{3,23}$/,
-              message: 'username regex',
+              message: 'Username regex',
             },
           })}
-          placeholder='abracadabra'
+          placeholder="abracadabra"
+          error={errors?.username?.message}
         />
-        <span className='text-red-500'>{errors?.username?.message}</span>
 
-        <label htmlFor='password'>password</label>
-        <input
-          id='password'
-          {...register('password', {
+        <Input
+          name="password"
+          label="Password"
+          type="password"
+          kind="text"
+          register={register('password', {
             required: 'Password is required',
             minLength: {
               value: 8,
-              message: 'minLength is 8',
+              message: 'MinLength is 8',
             },
           })}
-          placeholder='********'
+          placeholder="********"
+          error={errors?.password?.message}
         />
-        <span className='text-red-500'>{errors?.password?.message}</span>
 
-        <label htmlFor='cPassword'>cPassword</label>
-        <input
-          id='cPassword'
-          {...register('cPassword', {
+        <Input
+          name="cPassword"
+          label="C Password"
+          type="password"
+          kind="text"
+          register={register('cPassword', {
             required: 'cPassword is required',
             validate: (value: string) => {
               if (watch('password') != value) {
@@ -85,86 +90,55 @@ function SignUp() {
               }
             },
           })}
-          placeholder='********'
+          placeholder="********"
+          error={errors?.cPassword?.message}
         />
-        <span className='invalid-feedback text-red-500'>
-          {errors?.cPassword?.message}
-        </span>
 
-        <label htmlFor='phone'>phone</label>
-        <input
-          id='phone'
-          {...register('phone', {
+        <Input
+          name="phone"
+          label="Phone"
+          type="phone"
+          kind="phone"
+          register={register('phone', {
             required: 'Phone number is required',
             pattern: {
               value: /^010[-]+[0-9]{4}[-]+[0-9]{4}$/,
-              message: 'phone regex',
+              message: 'Phone regex',
             },
           })}
-          placeholder='010-0000-0000'
+          placeholder="010-0000-0000"
+          error={errors?.phone?.message}
         />
-        <span className='text-red-500'>{errors?.phone?.message}</span>
 
-        <label htmlFor='birth'>birth</label>
-        <input
-          id='birth'
-          {...register('birth', {
+        <Input
+          name="birth"
+          label="Birth"
+          type="birth"
+          kind="text"
+          register={register('birth', {
             required: 'Birthday is required',
             pattern: {
               value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-              message: 'birth regex',
+              message: 'Birth regex',
             },
           })}
-          placeholder='yyyy-mm-dd'
+          placeholder="yyyy-mm-dd"
+          error={errors?.birth?.message}
         />
-        <span className='text-red-500'>{errors?.birth?.message}</span>
 
-        <div className='flex justify-center'>
-          <div>
-            <div className='form-check'>
+        <div className="block">
+          <div className="mt-2">
+            <label className="inline-flex items-center">
               <input
-                className='form-check-input float-left mt-1 mr-2 h-4 w-4
-                cursor-pointer appearance-none rounded-sm 
-                border border-gray-300 bg-white bg-contain bg-center bg-no-repeat 
-                align-top transition duration-200 
-                checked:border-indigo-400 checked:bg-indigo-400 focus:outline-none'
-                type='checkbox'
-                value=''
-                id='flexCheckDefault'
+                type="checkbox"
+                className="h-4 w-4 rounded accent-[#5470f8]"
               />
-              <label
-                className='form-check-label inline-block text-gray-800'
-                htmlFor='flexCheckDefault'
-              >
-                Default checkbox
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <label className='flex justify-center'>
-          <input
-            type='checkbox'
-            className='h-4 w-4 cursor-pointer rounded-sm 
-            border border-gray-300 bg-white bg-contain bg-center 
-            accent-[#5470f8]'
-          />
-          Customized
-        </label>
-
-        <div className='block'>
-          <div className='mt-2'>
-            <label className='inline-flex items-center'>
-              <input
-                type='checkbox'
-                className='h-4 w-4 rounded accent-[#5470f8]'
-              />
-              <span className='ml-2'>Small size checkbox </span>
+              <span className="ml-2">Small size checkbox </span>
             </label>
           </div>
         </div>
 
-        <Button type='submit' text='sign Up' />
+        <Button type="submit" text="Sign Up" />
       </form>
     </Layout>
   );

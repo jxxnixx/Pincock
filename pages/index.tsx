@@ -1,7 +1,23 @@
 import type { NextPage } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
-  return <div className='w-full bg-slate-200 text-lg font-medium'>Home</div>;
+  const router = useRouter();
+
+  return (
+    <div className="flex w-full flex-col bg-slate-200 text-lg font-medium ">
+      <Link href="/">
+        <a className={router.pathname === '/' ? 'active' : ''}>Home</a>
+      </Link>
+      <Link href="/signup">
+        <a className={router.pathname === '/signup' ? 'active' : ''}>Sign Up</a>
+      </Link>
+      <Link href="/signup">
+        <a className={router.pathname === '/login' ? 'active' : ''}>Log In</a>
+      </Link>
+    </div>
+  );
 };
 
 export default Home;
