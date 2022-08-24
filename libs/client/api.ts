@@ -35,8 +35,13 @@ export const usersApi = {
   //       ad_agree: adAgree,
   //     }),
 
-  //   // 로그인(NextJS api)
-  //   loginNextApi: (req: IProps) => axios.post('/api/login', req),
+  // 로그인(NextJS api)
+  loginNext: (email: string, password: string) =>
+    axios.post('/api/login', {
+      email,
+      password,
+    }),
+
   // 로그인
   login: (email: string, password: string) =>
     api.post('/user/login/', {

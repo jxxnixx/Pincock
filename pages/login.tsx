@@ -1,5 +1,7 @@
 import { usersApi } from '@libs/client/api';
 import { FieldErrors, useForm } from 'react-hook-form';
+import Button from 'components/button';
+import Layout from '@layouts/layout';
 
 interface IForm {
   email: string;
@@ -29,7 +31,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <Layout>
       <form
         className='flex flex-col divide-y-2'
         onSubmit={handleSubmit(onValid, onInvalid)}
@@ -62,11 +64,9 @@ function Login() {
         />
         <span className='text-red-500'>{errors?.password?.message}</span>
 
-        <button type='submit' className='mt-6'>
-          Login
-        </button>
+        <Button type='submit' text='Login' />
       </form>
-    </div>
+    </Layout>
   );
 }
 

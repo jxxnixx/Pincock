@@ -1,4 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+// import { Checkbox } from '@material-tailwind/react';
+import Button from 'components/button';
+import Layout from '@layouts/layout';
 
 interface IsignUpForm {
   email: string;
@@ -24,7 +27,7 @@ function SignUp() {
   };
 
   return (
-    <div>
+    <Layout>
       <form
         className='flex flex-col divide-y-2'
         onSubmit={handleSubmit(submitForm)}
@@ -116,11 +119,54 @@ function SignUp() {
         />
         <span className='text-red-500'>{errors?.birth?.message}</span>
 
-        <button type='submit' className='mt-6'>
-          Sign Up
-        </button>
+        <div className='flex justify-center'>
+          <div>
+            <div className='form-check'>
+              <input
+                className='form-check-input float-left mt-1 mr-2 h-4 w-4
+                cursor-pointer appearance-none rounded-sm 
+                border border-gray-300 bg-white bg-contain bg-center bg-no-repeat 
+                align-top transition duration-200 
+                checked:border-indigo-400 checked:bg-indigo-400 focus:outline-none'
+                type='checkbox'
+                value=''
+                id='flexCheckDefault'
+              />
+              <label
+                className='form-check-label inline-block text-gray-800'
+                htmlFor='flexCheckDefault'
+              >
+                Default checkbox
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <label className='flex justify-center'>
+          <input
+            type='checkbox'
+            className='h-4 w-4 cursor-pointer rounded-sm 
+            border border-gray-300 bg-white bg-contain bg-center 
+            accent-[#5470f8]'
+          />
+          Customized
+        </label>
+
+        <div className='block'>
+          <div className='mt-2'>
+            <label className='inline-flex items-center'>
+              <input
+                type='checkbox'
+                className='h-4 w-4 rounded accent-[#5470f8]'
+              />
+              <span className='ml-2'>Small size checkbox </span>
+            </label>
+          </div>
+        </div>
+
+        <Button type='submit' text='sign Up' />
       </form>
-    </div>
+    </Layout>
   );
 }
 
