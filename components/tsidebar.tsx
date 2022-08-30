@@ -74,11 +74,12 @@ export default function TSideBar() {
       )}
 
       <div
-        className={`fixed -left-64 top-0 z-20 h-screen w-60 transform overflow-auto 
-        bg-gray-100 p-10 pr-20 text-white duration-300 ease-in-out 
+        className={`fixed -left-52 top-0 z-20 h-screen w-52 
+        bg-white p-10 text-white shadow-lg duration-300 ease-in-out 
         ${showSidebar ? 'translate-x-full ' : 'translate-x-0'}`}
+        // transform overflow-auto 제거
       >
-        <div className='p-2'>
+        <div className='pb-3'>
           <a
             href=''
             className='flex items-center pt-12 text-2xl font-semibold
@@ -91,42 +92,42 @@ export default function TSideBar() {
         <nav className='block w-40 pt-3 text-base font-semibold text-white'>
           <a
             href=''
-            className='flex items-center py-4 pl-5 text-sky-600 opacity-75 hover:opacity-100'
+            className='flex items-center py-4 pl-0 text-sky-600 opacity-75 hover:opacity-100'
           >
             <DashboardIcon class='mr-3' />
             Dashboard
           </a>
           <a
             href=''
-            className='flex items-center py-4 pl-5 text-sky-600 opacity-75 hover:opacity-100'
+            className='flex items-center py-4 pl-0 text-sky-600 opacity-75 hover:opacity-100'
           >
             <TablesIcon class='mr-3' />
             Tables
           </a>
           <a
             href=''
-            className='flex items-center py-4 pl-5 text-sky-600 opacity-75 hover:opacity-100'
+            className='flex items-center py-4 pl-0 text-sky-600 opacity-75 hover:opacity-100'
           >
             <FormsIcon class='mr-3' />
             Forms
           </a>
           <a
             href=''
-            className='flex items-center py-4 pl-5 text-sky-600 opacity-75 hover:opacity-100'
+            className='flex items-center py-4 pl-0 text-sky-600 opacity-75 hover:opacity-100'
           >
             <TabbedContentIcon class='mr-3' />
             Tabbed Content
           </a>
           <a
             href=''
-            className='flex items-center py-4 pl-5 text-sky-600 opacity-75 hover:opacity-100'
+            className='flex items-center py-4 pl-0 text-sky-600 opacity-75 hover:opacity-100'
           >
             <CalendarIcon class='mr-3' />
             Calendar
           </a>
           <a
             href=''
-            className='flex items-center py-4 pl-5 text-sky-600 opacity-75 hover:opacity-100'
+            className='flex items-center py-4 pl-0 text-sky-600 opacity-75 hover:opacity-100'
           >
             <SupportIcon class='mr-3' />
             Support
