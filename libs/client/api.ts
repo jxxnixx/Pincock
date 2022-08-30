@@ -50,7 +50,7 @@ export const usersApi = {
     }),
 };
 
-export const listApi = {
-  getPinList: (listId: number) =>
-    api.get(`/pin/search/list?listId=${listId}`).then((res) => res.data),
+export const pinApi = {
+  getPinList: (userId: number) =>
+    api.get(`/pin/search/user/${userId}`).then((res) => res.data),
 };

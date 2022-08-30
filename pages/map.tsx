@@ -1,9 +1,11 @@
 import axios from 'axios';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
-import Marker from '@public/icon/marker.png';
-import { listApi } from '@libs/client/api';
+import OrangeMarker from '@public/icon/orange-marker.png';
+import PurpleMarker from '@public/icon/purple-marker.png';
+import { pinApi } from '@libs/client/api';
 import useSWR from 'swr';
+import Layout from '@layouts/layout';
 
 declare global {
   interface Window {
@@ -12,9 +14,11 @@ declare global {
 }
 
 const Home: NextPage = () => {
-  const { data, error } = useSWR('/pin/search/list', () =>
-    listApi.getPinList(2)
+  const { data, error } = useSWR('/pin/search/user', () =>
+    pinApi.getPinList(13)
   );
+
+  const [isPopupOpened, setIsPopupOpened] = useState<boolean>(false);
 
   const latitude: number = 33.450701;
   const longitude: number = 126.570667;
@@ -40,14 +44,14 @@ const Home: NextPage = () => {
       }));
 
       for (var i = 0; i < pinList?.length; i++) {
-        const imageSrc = Marker.src; // 마커이미지의 주소
+        const imageSrc = OrangeMarker.src; // 마커이미지의 주소
         const imageSize = new kakao.maps.Size(20, 20); // 마커이미지의 크기
-        const imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션
+        // const imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션
         // 마커의 이미지정보를 가지고 있는 마커이미지를 생성
         const markerImage = new kakao.maps.MarkerImage(
           imageSrc,
-          imageSize,
-          imageOption
+          imageSize
+          // imageOption
         );
 
         const marker = new kakao.maps.Marker({
@@ -55,27 +59,64 @@ const Home: NextPage = () => {
           position: pinList[i].latlng, // 마커를 표시할 위치
           title: pinList[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
           image: markerImage,
+          clickable: true,
         });
 
         marker.setMap(map); // 마커 생성
         marker.setDraggable(true); // 드래그 가능 마커
+
+        // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+        const iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+        // 인포윈도우를 생성합니다
+        const infowindow = new kakao.maps.InfoWindow({
+          content: iwContent,
+          removable: iwRemoveable,
+        });
+
+        // 마커에 클릭이벤트를 등록합니다
+        kakao.maps.event.addListener(marker, 'click', () => {
+          // 마커 위에 인포윈도우를 표시합니다
+          infowindow.open(map, marker);
+        });
       }
 
-      // 마커 클릭 이벤트
-      // kakao.maps.event.addListener(map, 'click', (mouseEvent: any) => {
-      //   const latlng = mouseEvent.latLng; // 클릭한 위도, 경도 정보
-      //   marker.setPosition(latlng); // 마커 위치를 클릭한 위치로 옮김
-      //   // const message = `클릭한 위치의 위도는 ${latlng.getLat()}이고, 경도는 ${latlng.getLng()}입니다'`;
-      //   // console.log(message);
+      const imageSrc = PurpleMarker.src; // 마커이미지의 주소
+      const imageSize = new kakao.maps.Size(20, 20); // 마커이미지의 크기
+
+      // 마커의 이미지정보를 가지고 있는 마커이미지를 생성
+      const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+      const marker = new kakao.maps.Marker({
+        // map,
+        // position: latlng, // 마커를 표시할 위치
+        image: markerImage,
+      });
+
+      marker.setMap(map); // 마커 생성
+      marker.setDraggable(true); // 드래그 가능 마커
+
+      /** 마커 클릭 이벤트 */
+      kakao.maps.event.addListener(map, 'click', (mouseEvent: any) => {
+        const latlng = mouseEvent.latLng; // 클릭한 위도, 경도 정보
+        marker.setPosition(latlng); // 마커 위치를 클릭한 위치로 옮김
+        setIsPopupOpened(true);
+        console.log(
+          '새로운 마커 생성 -',
+          '위도:',
+          latlng.getLat(),
+          '경도:',
+          latlng.getLng()
+        );
+      });
+
+      // /** 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수 호출 이벤트 등록 */
+      // kakao.maps.event.addListener(map, 'dragend', function () {
+      //   // 지도 중심좌표
+      //   const latlng = map.getCenter();
       //   console.log('위도:', latlng.getLat(), '경도:', latlng.getLng());
       // });
-
-      // 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
-      kakao.maps.event.addListener(map, 'dragend', function () {
-        // 지도 중심좌표
-        const latlng = map.getCenter();
-        console.log('위도:', latlng.getLat(), '경도:', latlng.getLng());
-      });
     });
   };
 
@@ -92,7 +133,15 @@ const Home: NextPage = () => {
     return () => mapScript.removeEventListener('load', onLoadKakaoMap);
   }, [data]);
 
-  return <div id='map' className='h-screen w-full' />;
+  return (
+    <Layout isMap>
+      <div id='map' className='relative h-screen w-full'>
+        {isPopupOpened && (
+          <div className='absolute top-1/2 left-1/2 z-[9999] h-32 w-40 -translate-x-1/2 -translate-y-1/2 bg-slate-300 shadow-md'></div>
+        )}
+      </div>
+    </Layout>
+  );
 };
 
 export default Home;
