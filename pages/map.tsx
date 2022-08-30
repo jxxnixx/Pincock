@@ -21,7 +21,7 @@ interface IForm {
   title: string;
   list: string;
   description: string;
-  type: string;
+  icon: string;
 }
 
 const popupVar: Variants = {
@@ -55,9 +55,11 @@ const Home: NextPage = () => {
     register,
     handleSubmit,
     watch,
+    setValue,
+    setError,
     formState: { errors },
   } = useForm<IForm>({
-    mode: 'onChange',
+    mode: 'onSubmit',
   });
   const onValid = async (data: IForm) => {
     console.log(data);
@@ -184,6 +186,20 @@ const Home: NextPage = () => {
     return () => mapScript.removeEventListener('load', onLoadKakaoMap);
   }, [data]);
 
+  useEffect(() => {
+    if (!isPopupOpened) {
+      setValue('title', '');
+      setValue('list', '');
+      setValue('description', '');
+      setValue('icon', '');
+
+      setError('title', { message: undefined });
+      setError('list', { message: undefined });
+      setError('description', { message: undefined });
+      setError('icon', { message: undefined });
+    }
+  }, [isPopupOpened]);
+
   return (
     <Layout isMap>
       <div id='map' className='relative h-screen w-full'>
@@ -225,6 +241,9 @@ const Home: NextPage = () => {
                   </svg>
                 </div>
               </div>
+              <div className='mt-1 pl-1.5 text-[0.5rem] text-red-500'>
+                {errors?.title?.message || errors?.list?.message}
+              </div>
 
               <input
                 type='text'
@@ -234,6 +253,9 @@ const Home: NextPage = () => {
                 })}
                 className='mt-1.5 h-8 w-full rounded border border-[#eef3ff] px-2.5 text-xs outline-none'
               />
+              <div className='mt-1 pl-1.5 text-[0.5rem] text-red-500'>
+                {errors?.description?.message}
+              </div>
 
               <div className='mt-2.5 pl-1.5 text-[0.5rem]'>아이콘 선택</div>
 
@@ -244,7 +266,7 @@ const Home: NextPage = () => {
                       id={`icon${i}`}
                       type='radio'
                       value={i}
-                      {...register('type', {
+                      {...register('icon', {
                         required: '아이콘을 선택해주세요',
                       })}
                       className='hidden'
@@ -253,26 +275,29 @@ const Home: NextPage = () => {
                     <label
                       htmlFor={`icon${i}`}
                       className={cls(
-                        watch('type') === JSON.stringify(i)
-                          ? 'bg-[#5470f8]'
+                        watch('icon') === JSON.stringify(i)
+                          ? 'bg-[#758cff]'
                           : '',
                         'flex aspect-square w-8 items-center justify-center rounded-md border border-[#eef3ff] shadow-sm transition-all'
                       )}
                     >
                       {i === 0
-                        ? mapIcons.cocktail(watch('type') === JSON.stringify(i))
+                        ? mapIcons.cocktail(watch('icon') === JSON.stringify(i))
                         : i === 1
-                        ? mapIcons.plane(watch('type') === JSON.stringify(i))
+                        ? mapIcons.plane(watch('icon') === JSON.stringify(i))
                         : i === 2
-                        ? mapIcons.heart(watch('type') === JSON.stringify(i))
+                        ? mapIcons.heart(watch('icon') === JSON.stringify(i))
                         : i === 3
-                        ? mapIcons.caves(watch('type') === JSON.stringify(i))
+                        ? mapIcons.caves(watch('icon') === JSON.stringify(i))
                         : i === 4
-                        ? mapIcons.coffee(watch('type') === JSON.stringify(i))
-                        : mapIcons.food(watch('type') === JSON.stringify(i))}
+                        ? mapIcons.coffee(watch('icon') === JSON.stringify(i))
+                        : mapIcons.food(watch('icon') === JSON.stringify(i))}
                     </label>
                   </div>
                 ))}
+              </div>
+              <div className='mt-1 pl-1.5 text-[0.5rem] text-red-500'>
+                {errors?.icon?.message}
               </div>
 
               <div className='mt-5 flex justify-center space-x-2'>
