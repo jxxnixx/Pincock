@@ -30,9 +30,11 @@ export default function SideBar() {
         className='absolute top-5 left-0 bottom-0 w-[300px]'
       >
         <motion.div
+          initial={false}
+          animate={isOpen ? 'open' : 'closed'}
           variants={sidebarVariants}
           //background
-          className='absolute top-0 left-0 bottom-0 w-[300px] bg-white'
+          className='absolute -top-5 -left-2 bottom-0 w-[300px] bg-white'
         />
         <Toggler toggle={() => toggleOpen()} />
         <Navigation />

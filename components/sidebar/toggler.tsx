@@ -27,7 +27,7 @@ const Toggler = ({ toggle }: TProps) => {
     <>
       <button
         onClick={toggle}
-        className='absolute top-12 left-2 h-11 w-11 rounded-full border-0 outline-none focus:outline-none'
+        className='absolute top-12 left-2 h-12 w-12 rounded-full border-0 outline-none focus:outline-none'
       >
         <svg width='23' height='23' viewBox='0 0 23 23' className='ml-3'>
           {/* <Path d="M 2 2.5 L 20 2.5" />
