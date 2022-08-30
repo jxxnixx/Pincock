@@ -4,6 +4,7 @@ import Button from 'components/button';
 import Layout from '@layouts/layout';
 import Input from 'components/input';
 import Link from 'next/link';
+import router from 'next/router';
 
 interface IForm {
   email: string;
@@ -35,7 +36,7 @@ function Login() {
   return (
     <Layout canGoBack title='로그인'>
       <form
-        className='mt-5 flex flex-col'
+        className='mt-20 flex flex-col'
         onSubmit={handleSubmit(onValid, onInvalid)}
       >
         <Input
@@ -68,10 +69,13 @@ function Login() {
         <div className='mb-2' />
 
         <Button type='submit' text='로그인' />
+
         <div className='my-4 h-0.5 bg-gray-300' />
 
         <Link href='/signup'>
-          <Button text='회원가입' />
+          <a className={router.pathname === '/login' ? 'active' : ''}>
+            <Button type='button' text='회원가입' />
+          </a>
         </Link>
       </form>
     </Layout>

@@ -1,12 +1,11 @@
 import { motion, Variants } from 'framer-motion';
 
-const menuItemVariants: Variants = {
+const ItemVariants: Variants = {
   open: {
     y: 0,
     opacity: 1,
     transition: {
       duration: 0.4,
-
       ease: [0.6, 0.05, -0.01, 0.9],
     },
   },
@@ -22,9 +21,10 @@ const menuItemVariants: Variants = {
 
 const Item = () => {
   return (
-    <motion.li variants={menuItemVariants}>
-      <span className="icon-placeholder"></span>
-      <span className="text-placeholder"></span>
+    <motion.li variants={ItemVariants}>
+      {/* icon-placeholder, text-placeholder */}
+      <span className='h-[45px] w-[45px] rounded-full' />
+      <span className='h-8 flex-1 rounded-l' />
     </motion.li>
   );
 };

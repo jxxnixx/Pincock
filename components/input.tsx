@@ -22,13 +22,13 @@ export default function Input({
   return (
     <div>
       <label
-        className="mb-1 block text-sm font-medium text-gray-700"
+        className='mb-1 block text-sm font-medium text-gray-700'
         htmlFor={name}
       >
         {label}
       </label>
       {kind === 'text' ? (
-        <div className="relative flex items-center rounded-md shadow-sm">
+        <div className='relative flex items-center rounded-md shadow-sm'>
           <input
             id={name}
             {...register}
@@ -41,8 +41,8 @@ export default function Input({
         </div>
       ) : null}
       {kind === 'phone' ? (
-        <div className="flex rounded-md shadow-sm">
-          <span className="flex select-none items-center justify-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
+        <div className='flex rounded-md shadow-sm'>
+          <span className='flex select-none items-center justify-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500'>
             +82
           </span>
           <input
@@ -56,7 +56,7 @@ export default function Input({
           />
         </div>
       ) : null}
-      <div className="mt-2 text-sm text-red-500">{error}</div>
+      <div className='mt-2 text-sm text-red-500'>{error}</div>
     </div>
   );
 }

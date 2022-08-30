@@ -1,10 +1,9 @@
-import MapHeader from '@components/mapheader';
-import MapTab from '@components/maptab';
+import TSideBar from '@components/tsidebar';
 
 function Practice() {
   return (
     <div>
-      <MapTab />
+      <TSideBar />
     </div>
   );
 }
