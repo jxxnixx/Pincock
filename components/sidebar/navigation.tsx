@@ -14,7 +14,7 @@ const Navigation = () => {
   return (
     <motion.ul variants={navigationVariants}>
       {[...Array(5)].map((_, i) => (
-        <Item />
+        <Item key={i} />
       ))}
     </motion.ul>
   );

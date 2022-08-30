@@ -3,6 +3,7 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import Button from 'components/button';
 import Layout from '@layouts/layout';
 import Input from 'components/input';
+import Link from 'next/link';
 
 interface IForm {
   email: string;
@@ -32,15 +33,15 @@ function Login() {
   };
 
   return (
-    <Layout canGoBack title="로그인">
+    <Layout canGoBack title='로그인'>
       <form
-        className="mt-5 flex flex-col"
+        className='mt-5 flex flex-col'
         onSubmit={handleSubmit(onValid, onInvalid)}
       >
         <Input
-          name="email"
-          type="text"
-          label="이메일"
+          name='email'
+          type='text'
+          label='이메일'
           register={register('email', {
             required: 'Email is required',
             pattern: {
@@ -48,28 +49,30 @@ function Login() {
               message: 'Email regex',
             },
           })}
-          placeholder="이메일을 입력하세요."
+          placeholder='이메일을 입력하세요.'
           error={errors?.email?.message}
         />
 
         <Input
-          name="password"
-          label="비밀번호"
-          type="password"
-          kind="text"
+          name='password'
+          label='비밀번호'
+          type='password'
+          kind='text'
           register={register('password', {
             required: 'Password is required',
           })}
-          placeholder="비밀번호를 입력하세요."
+          placeholder='비밀번호를 입력하세요.'
           error={errors?.password?.message}
         />
 
-        <div className="mb-2" />
+        <div className='mb-2' />
 
-        <Button type="submit" text="로그인" />
-        <div className="my-4 h-0.5 bg-gray-300" />
+        <Button type='submit' text='로그인' />
+        <div className='my-4 h-0.5 bg-gray-300' />
 
-        <Button text="회원가입" />
+        <Link href='/signup'>
+          <Button text='회원가입' />
+        </Link>
       </form>
     </Layout>
   );
