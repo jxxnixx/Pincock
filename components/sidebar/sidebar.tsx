@@ -23,7 +23,7 @@ export default function SideBar() {
   const [isOpen, toggleOpen] = useCycle(false, true);
 
   return (
-    <div className='h-screen overflow-hidden bg-gradient-to-br from-gray-200 to-gray-100'>
+    <div className='z-30 h-screen overflow-hidden bg-gradient-to-br from-gray-200 to-gray-100'>
       <motion.nav
         initial={false}
         animate={isOpen ? 'open' : 'closed'}

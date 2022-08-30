@@ -30,7 +30,7 @@ export default function TSideBar() {
         <svg
           onClick={() => setShowSidebar(!showSidebar)}
           xmlns='http://www.w3.org/2000/svg'
-          className='fixed top-20 left-5 z-30 flex h-6 w-6 cursor-pointer items-center'
+          className='fixed top-4 left-5 z-30 flex h-6 w-6 cursor-pointer items-center'
           fill='none'
           viewBox='0 0 24 24'
           strokeWidth={2}
@@ -59,7 +59,7 @@ export default function TSideBar() {
         <svg
           onClick={() => setShowSidebar(!showSidebar)}
           xmlns='http://www.w3.org/2000/svg'
-          className={`fixed top-20 left-5 z-20 flex h-6 w-6 cursor-pointer items-center`}
+          className={`fixed top-4 left-5 z-20 flex h-6 w-6 cursor-pointer items-center`}
           fill='rgb(14, 165, 233)'
           viewBox='0 0 24 24'
           stroke='currentColor'
@@ -74,7 +74,7 @@ export default function TSideBar() {
       )}
 
       <div
-        className={`fixed -left-64 top-10 z-10 h-full w-60 transform overflow-auto 
+        className={`fixed -left-64 top-0 z-20 h-screen w-60 transform overflow-auto 
         bg-gray-100 p-10 pr-20 text-white duration-300 ease-in-out 
         ${showSidebar ? 'translate-x-full ' : 'translate-x-0'}`}
       >

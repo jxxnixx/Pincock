@@ -36,7 +36,7 @@ function Login() {
   return (
     <Layout canGoBack title='로그인'>
       <form
-        className='mt-20 flex flex-col'
+        className='mt-40 flex flex-col'
         onSubmit={handleSubmit(onValid, onInvalid)}
       >
         <Input

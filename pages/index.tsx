@@ -37,6 +37,11 @@ const Home: NextPage = () => {
         <Link href='/map'>
           <a className={router.pathname === '/map' ? 'active' : ''}>map</a>
         </Link>
+        <Link href='/profile'>
+          <a className={router.pathname === '/profile' ? 'active' : ''}>
+            profile
+          </a>
+        </Link>
       </div>
     </Layout>
   );

@@ -12,10 +12,7 @@ const navigationVariants = {
 
 const Navigation = () => {
   return (
-    <motion.ul
-      variants={navigationVariants}
-      className='relative mt-0 w-52 p-4 '
-    >
+    <motion.ul variants={navigationVariants} className='fixed mt-0 w-52 p-4 '>
       {[...Array(5)].map((_, i) => (
         <Item />
       ))}

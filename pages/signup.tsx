@@ -29,7 +29,7 @@ function SignUp() {
 
   return (
     <Layout canGoBack title='회원가입'>
-      <form className='mt-20 flex flex-col' onSubmit={handleSubmit(submitForm)}>
+      <form className='mt-40 flex flex-col' onSubmit={handleSubmit(submitForm)}>
         <Input
           name='username'
           label='이름'
@@ -133,7 +133,7 @@ function SignUp() {
                 type='checkbox'
                 className='h-4 w-4 rounded accent-[#5470f8]'
               />
-              <span className='ml-2 text-xs'>
+              <span className='ml-2 text-sm'>
                 서비스 이용약관에 동의합니다. (필수){' '}
               </span>
             </label>
@@ -146,7 +146,7 @@ function SignUp() {
                 type='checkbox'
                 className='h-4 w-4 rounded accent-[#5470f8]'
               />
-              <span className='ml-2 text-xs'>
+              <span className='ml-2 text-sm'>
                 개인정보 수집 및 이용동의에 동의합니다. (필수){' '}
               </span>
             </label>
@@ -159,7 +159,7 @@ function SignUp() {
                 type='checkbox'
                 className='h-4 w-4 rounded accent-[#5470f8]'
               />
-              <span className='ml-2 text-xs'>만 14세 이상입니다. (필수) </span>
+              <span className='ml-2 text-sm'>만 14세 이상입니다. (필수) </span>
             </label>
           </div>
         </div>
@@ -170,7 +170,7 @@ function SignUp() {
                 type='checkbox'
                 className='h-4 w-4 rounded accent-[#5470f8]'
               />
-              <span className='ml-2 text-xs'>
+              <span className='ml-2 text-sm'>
                 광고성 정보 수신동의에 동의합니다. (선택){' '}
               </span>
             </label>
