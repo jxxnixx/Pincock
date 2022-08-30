@@ -32,15 +32,15 @@ function Login() {
   };
 
   return (
-    <Layout>
+    <Layout canGoBack title="로그인">
       <form
-        className="flex flex-col"
+        className="mt-5 flex flex-col"
         onSubmit={handleSubmit(onValid, onInvalid)}
       >
         <Input
           name="email"
           type="text"
-          label="Email"
+          label="이메일"
           register={register('email', {
             required: 'Email is required',
             pattern: {
@@ -48,23 +48,28 @@ function Login() {
               message: 'Email regex',
             },
           })}
-          placeholder="E-mail"
+          placeholder="이메일을 입력하세요."
           error={errors?.email?.message}
         />
 
         <Input
           name="password"
-          label="Password"
+          label="비밀번호"
           type="password"
           kind="text"
           register={register('password', {
             required: 'Password is required',
           })}
-          placeholder="********"
+          placeholder="비밀번호를 입력하세요."
           error={errors?.password?.message}
         />
 
-        <Button type="submit" text="Login" />
+        <div className="mb-2" />
+
+        <Button type="submit" text="로그인" />
+        <div className="my-4 h-0.5 bg-gray-300" />
+
+        <Button text="회원가입" />
       </form>
     </Layout>
   );

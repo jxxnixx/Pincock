@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Roboto+Slab:wght@300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 22px;
+}
+
+@layer base {
+  ul {
+    @apply absolute top-24 w-72 p-5;
+  }
+  li {
+    @apply mb-5 flex cursor-pointer items-center space-x-6;
+  }
+}
+
+/* @layer base {
+  body {
+    @apply h-screen overflow-hidden bg-gradient-to-br from-gray-200 to-gray-100;
+  }
+  nav {
+    @apply absolute top-0 left-0 bottom-0 w-[300px];
+  }
+  ul {
+    @apply absolute top-[100px] w-[260px] p-5;
+  }
+  li {
+    @apply mb-5 flex cursor-pointer items-center space-x-6;
+  }
+
+  button {
+    @apply absolute top-[17px] left-[29px] h-[50px] w-[50px] rounded-full border-0 outline-none focus:outline-none;
+  }
+}
+*/
+
+/* @layer components {
+  .background {
+    @apply absolute top-0 left-0 bottom-0 w-[300px] bg-white;
+  }
+  .icon-placeholder {
+    @apply h-[45px] w-[45px] rounded-full;
+  }
+  .text-placeholder {
+    @apply h-8 flex-1 rounded-lg;
+  }
+} */
+
+/* menu items */
+
+ul li:nth-child(1) span {
+  border: 2px solid #f854a6;
+}
+ul li:nth-child(2) span {
+  border: 2px solid #f854f0;
+}
+ul li:nth-child(3) span {
+  border: 2px solid #c454f8;
+}
+ul li:nth-child(4) span {
+  border: 2px solid #8e54f8;
+}
+ul li:nth-child(5) span {
+  border: 2px solid #5470f8;
+}

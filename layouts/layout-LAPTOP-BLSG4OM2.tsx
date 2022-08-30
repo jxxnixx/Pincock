@@ -1,3 +1,4 @@
+import MapTab from '@components/maptab';
 import { cls } from '@libs/client/utils';
 import Tab from 'components/tab';
 
@@ -19,6 +20,7 @@ export default function Layout({
   return (
     <>
       {canGoBack ? <Tab title={title} /> : null}
+      {isMap ? <MapTab /> : null}
 
       <div className={cls('mx-auto w-full', isMap ? '' : 'max-w-[330px]')}>
         {children}

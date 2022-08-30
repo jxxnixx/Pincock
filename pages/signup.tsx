@@ -28,26 +28,11 @@ function SignUp() {
   };
 
   return (
-    <Layout>
-      <form className="flex flex-col" onSubmit={handleSubmit(submitForm)}>
-        <Input
-          name="email"
-          type="text"
-          label="Email"
-          register={register('email', {
-            required: 'Email is required',
-            pattern: {
-              value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
-              message: 'Email regex',
-            },
-          })}
-          placeholder="aaa@aaa.com"
-          error={errors?.email?.message}
-        />
-
+    <Layout canGoBack title="회원가입">
+      <form className="mt-5 flex flex-col" onSubmit={handleSubmit(submitForm)}>
         <Input
           name="username"
-          label="Username"
+          label="이름"
           type="username"
           kind="text"
           register={register('username', {
@@ -57,13 +42,28 @@ function SignUp() {
               message: 'Username regex',
             },
           })}
-          placeholder="abracadabra"
+          placeholder="이름"
           error={errors?.username?.message}
         />
 
         <Input
+          name="email"
+          type="text"
+          label="이메일"
+          register={register('email', {
+            required: 'Email is required',
+            pattern: {
+              value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
+              message: 'Email regex',
+            },
+          })}
+          placeholder="이메일"
+          error={errors?.email?.message}
+        />
+
+        <Input
           name="password"
-          label="Password"
+          label="비밀번호"
           type="password"
           kind="text"
           register={register('password', {
@@ -73,13 +73,13 @@ function SignUp() {
               message: 'MinLength is 8',
             },
           })}
-          placeholder="********"
+          placeholder="비밀번호"
           error={errors?.password?.message}
         />
 
         <Input
           name="cPassword"
-          label="C Password"
+          label="비밀번호 확인"
           type="password"
           kind="text"
           register={register('cPassword', {
@@ -90,13 +90,13 @@ function SignUp() {
               }
             },
           })}
-          placeholder="********"
+          placeholder="비밀번호 확인"
           error={errors?.cPassword?.message}
         />
 
         <Input
           name="phone"
-          label="Phone"
+          label="전화번호"
           type="phone"
           kind="phone"
           register={register('phone', {
@@ -106,13 +106,13 @@ function SignUp() {
               message: 'Phone regex',
             },
           })}
-          placeholder="010-0000-0000"
+          placeholder="000-0000-0000"
           error={errors?.phone?.message}
         />
 
-        <Input
+        {/* <Input
           name="birth"
-          label="Birth"
+          label="생일"
           type="birth"
           kind="text"
           register={register('birth', {
@@ -124,7 +124,7 @@ function SignUp() {
           })}
           placeholder="yyyy-mm-dd"
           error={errors?.birth?.message}
-        />
+        /> */}
 
         <div className="block">
           <div className="mt-2">
@@ -133,12 +133,53 @@ function SignUp() {
                 type="checkbox"
                 className="h-4 w-4 rounded accent-[#5470f8]"
               />
-              <span className="ml-2">Small size checkbox </span>
+              <span className="ml-2 text-sm">
+                서비스 이용약관에 동의합니다. (필수){' '}
+              </span>
+            </label>
+          </div>
+        </div>
+        <div className="block">
+          <div className="mt-2">
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded accent-[#5470f8]"
+              />
+              <span className="ml-2 text-sm">
+                개인정보 수집 및 이용동의에 동의합니다. (필수){' '}
+              </span>
+            </label>
+          </div>
+        </div>
+        <div className="block">
+          <div className="mt-2">
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded accent-[#5470f8]"
+              />
+              <span className="ml-2 text-sm">만 14세 이상입니다. (필수) </span>
+            </label>
+          </div>
+        </div>
+        <div className="block">
+          <div className="mt-2">
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded accent-[#5470f8]"
+              />
+              <span className="ml-2 text-sm">
+                광고성 정보 수신동의에 동의합니다. (선택){' '}
+              </span>
             </label>
           </div>
         </div>
 
-        <Button type="submit" text="Sign Up" />
+        <div className="mb-3" />
+
+        <Button type="submit" text="회원가입" />
       </form>
     </Layout>
   );
