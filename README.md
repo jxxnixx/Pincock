@@ -1,6 +1,2 @@
-# Pincock
-> 지도 api 연습을 위한 사이트
-
-
-## 기술 스택
-JavaScript, Typescript, React, Next.JS
+# 2022/08/14 ~ 09/02
+- nextjs, typescript, tailwindcss를 활용한 지도 웹사이트
